@@ -22,5 +22,8 @@ module FuturesFundPhoto
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Set the applications secret token
+    config.secret_token = ENV['SECRET_KEY_BASE']
   end
 end
