@@ -1,4 +1,10 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
+  # Root
+  root to: 'students#index'
+  
+  # Devise
+  devise_for :users
+
   # Directors
   resources :directors
 
