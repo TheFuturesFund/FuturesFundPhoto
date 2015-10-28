@@ -22,6 +22,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5.0'
 # Use Dotenv to load environment variables outside of foreman
 gem 'dotenv-rails'
+# Use Pundit for authorizations
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

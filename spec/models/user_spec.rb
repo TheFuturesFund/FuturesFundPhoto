@@ -2,7 +2,7 @@ require 'rails_helper'
 
 roles = [:director, :teacher, :student]
 roles.each do |role|
-  describe User, "\##{role}?" do
+  describe User, "\##{role}?", type: :model do
     it "should return true when the user is a #{role}" do
       user = build("#{role}_user".to_sym)
       expect(user.send("#{role}?".to_sym)).to eq(true)
