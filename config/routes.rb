@@ -18,4 +18,10 @@ Rails.application.routes.draw do
 
   # Students
   resources :students
+
+  # Albums
+  resources :albums
+
+  # Photos
+  resources :photos
 end

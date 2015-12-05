@@ -29,4 +29,16 @@ FactoryGirl.define do
       association :role, factory: :teacher
     end
   end
+
+  factory :album do
+    student
+    name Faker::Lorem.sentence
+  end
+
+  factory :photo do
+    album
+    name Faker::Lorem.sentence
+    image Faker::Internet.url
+    category 'outtake_category'     
+  end
 end
