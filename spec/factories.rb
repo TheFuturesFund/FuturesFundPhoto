@@ -18,7 +18,7 @@ FactoryGirl.define do
     email Faker::Internet.email
     username Faker::Internet.user_name
     password "password"
-    password_confirmation "password_confirmation"
+    password_confirmation "password"
     factory :director_user do
       association :role, factory: :director
     end
