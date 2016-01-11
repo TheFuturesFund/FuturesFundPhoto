@@ -1,14 +1,54 @@
-[Director, Teacher, Student].each do |klass|
+3.times do
+  Director.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    user: User.new(
+      email: Faker::Internet.email,
+      username: Faker::Internet.user_name,
+      password: "password",
+      password_confirmation: "password",
+    )
+  )
+end
+
+10.times do
+  Teacher.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    user: User.new(
+      email: Faker::Internet.email,
+      username: Faker::Internet.user_name,
+      password: "password",
+      password_confirmation: "password",
+    )
+  )
+end
+
+5.times do
+  classroom = Classroom.create(
+    name: Faker::Lorem.sentence,
+  )
   10.times do
-    klass.create(
+    student = Student.create(
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
+      classroom: classroom,
       user: User.new(
         email: Faker::Internet.email,
         username: Faker::Internet.user_name,
         password: "password",
-        password_confirmation: "password"
+        password_confirmation: "password",
       )
     )
+    3.times do
+      album = Album.create(
+        name: Faker::Lorem.sentence,
+      )
+      20.times do
+        Photo.create(
+          name: Faker::Lorem.sentence
+        )
+      end
+    end
   end
 end

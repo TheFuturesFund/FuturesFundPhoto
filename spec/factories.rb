@@ -41,4 +41,8 @@ FactoryGirl.define do
     image Faker::Internet.url
     category 'outtake_category'     
   end
+
+  factory :classroom do
+    name Faker::Lorem.sentence
+  end
 end

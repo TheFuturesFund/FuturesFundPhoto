@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :users
   get :dashboard, to: 'users#dashboard'
 
+  # Classrooms
+  resources :classrooms
+
   # Students
   resources :students
 
