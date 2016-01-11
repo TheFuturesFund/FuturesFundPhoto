@@ -15,6 +15,18 @@ describe StudentPolicy, type: :policy do
     end
   end
 
+  permissions :index? do
+    it "does not allow visitors to view students" do
+      expect(subject).not_to permit(nil, build(:student))
+    end
+
+    it "allows all users to view students" do
+      expect(subject).to permit(build(:director_user), build(:student))
+      expect(subject).to permit(build(:teacher_user), build(:student))
+      expect(subject).to permit(build(:student_user), build(:student))
+    end
+  end
+
   permissions :new?, :create? do
     it "does not allow visitors to create students" do
       expect(subject).not_to permit(nil, build(:student))

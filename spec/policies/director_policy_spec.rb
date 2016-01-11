@@ -18,6 +18,21 @@ describe DirectorPolicy, type: :policy do
     end
   end
 
+  permissions :show? do
+    it "does not allow visitors to view directors" do
+      expect(subject).not_to permit(nil, build(:director))
+    end
+
+    it "allows teachers or directors to view directors" do
+      expect(subject).to permit(build(:director_user), build(:director))
+      expect(subject).to permit(build(:teacher_user), build(:director))
+    end
+
+    it "does not allow students to list directors" do
+      expect(subject).not_to permit(build(:student_user), build(:director))
+    end
+  end
+
   permissions :new?, :create? do
     it "does not allow visitors to create directors" do
       expect(subject).not_to permit(nil, build(:director))

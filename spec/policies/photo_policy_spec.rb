@@ -15,6 +15,18 @@ describe PhotoPolicy, type: :policy do
     end
   end
 
+  permissions :show? do
+    it "does not allow visitors to view photos" do
+      expect(subject).not_to permit(nil, build(:photo))
+    end
+
+    it "allows all users to view photos" do
+      expect(subject).to permit(build(:director_user), build(:photo))
+      expect(subject).to permit(build(:teacher_user), build(:photo))
+      expect(subject).to permit(build(:student_user), build(:photo))
+    end
+  end
+
   permissions :new?, :create? do
     it "does not allow visitors to create photos" do
       expect(subject).not_to permit(nil, build(:photo))

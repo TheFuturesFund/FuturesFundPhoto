@@ -15,6 +15,18 @@ describe TeacherPolicy, type: :policy do
     end
   end
 
+  permissions :show? do
+    it "does not allow visitors to create teachers" do
+      expect(subject).not_to permit(nil, build(:teacher))
+    end
+
+    it "allows all users to list teachers" do
+      expect(subject).to permit(build(:director_user), build(:teacher))
+      expect(subject).to permit(build(:teacher_user), build(:teacher))
+      expect(subject).to permit(build(:student_user), build(:teacher))
+    end
+  end
+
   permissions :new?, :create? do
     it "does not allow visitors to create teachers" do
       expect(subject).not_to permit(nil, build(:teacher))

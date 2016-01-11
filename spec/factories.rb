@@ -45,4 +45,9 @@ FactoryGirl.define do
   factory :classroom do
     name Faker::Lorem.sentence
   end
+
+  factory :classroom_student do
+    student
+    classroom
+  end
 end

@@ -18,6 +18,29 @@ describe ClassroomPolicy, type: :policy do
     end
   end
 
+  permissions :show? do
+    it "does not allow visitors to view a classroom" do
+      expect(subject).not_to permit(nil, build(:classroom))
+    end
+
+    it "allows directors and teachers to view a classroom" do
+      expect(subject).to permit(build(:director_user), build(:classroom))
+      expect(subject).to permit(build(:teacher_user), build(:classroom))
+    end
+
+    it "allows students to view their classroom" do
+      user = create(:student_user)
+      classroom = create(:classroom)
+      classroom_student = create(:classroom_student, classroom: classroom, student: user.role)
+      user.reload
+      expect(subject).to permit(user, classroom)
+    end
+
+    it "does not allow students to view any classroom" do
+      expect(subject).not_to permit(build(:student_user), build(:classroom))
+    end
+  end
+
   permissions :new?, :create? do
     it "does not allow visitors to create classrooms" do
       expect(subject).not_to permit(nil, build(:classroom))
