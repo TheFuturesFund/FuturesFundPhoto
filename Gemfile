@@ -41,5 +41,7 @@ group :development, :test do
   gem 'capybara'
   # Use Faker to generate example data
   gem 'faker'
+  # Use pry to debug on the console
+  gem 'pry-rails'
 end
 

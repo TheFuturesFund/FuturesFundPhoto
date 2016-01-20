@@ -8,4 +8,8 @@ class Photo < ActiveRecord::Base
   attachment :image
 
   belongs_to :album
+
+  def set_initial_name
+    name = SecureRandom.uuid
+  end
 end
