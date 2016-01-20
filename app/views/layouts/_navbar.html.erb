@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Futures Fund Photos", root_url, { class: "navbar-brand" } %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <% if current_user.present? %>
+        <ul class="nav navbar-nav">
+          <% if current_user.director? %>
+            <li><%= link_to "Directors", directors_path %></li>
+            <li><%= link_to "Teachers", teachers_path %></li>
+            <li><%= link_to "Classes", classrooms_path %></li>
+          <% elsif current_user.teacher? %>
+            <li><%= link_to "Teachers", teachers_path %></li>
+            <li><%= link_to "Classes", classrooms_path %></li>
+          <% elsif current_user.student? %>
+            <li><a href="#">Class</a></li>
+            <li><a href="#">Albums</a></li>
+          <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <% if current_user.director? %>
+              <%= link_to current_user.role.full_name, director_path(current_user.role) %>
+            <% elsif current_user.teacher? %>
+              <%= link_to current_user.role.full_name, teacher_path(current_user.role) %>
+            <% elsif current_user.student? %>
+              <%= link_to current_user.role.full_name, student_path(current_user.role) %>
+            <% end %>
+          </li>
+          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+        </ul>
+      <% end %>
+      <ul class="nav navbar-nav">
+      </ul>
+    </div>
+  </div>
+</nav>
