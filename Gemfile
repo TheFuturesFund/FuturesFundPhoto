@@ -24,6 +24,9 @@ gem 'devise', '~> 3.5.0'
 gem 'dotenv-rails'
 # Use Pundit for authorizations
 gem 'pundit'
+# Use Refile for image uploads
+gem "refile", require: "refile/rails"
+gem "refile-mini_magick"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

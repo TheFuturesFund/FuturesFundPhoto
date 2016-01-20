@@ -5,5 +5,7 @@ class Photo < ActiveRecord::Base
     :top_select_category
   ]
 
+  attachment :image
+
   belongs_to :album
 end

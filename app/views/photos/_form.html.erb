@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :image %><br>
-    <%= f.text_field :image %>
+    <%= f.attachment_field :image %>
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.number_field :category %>
+    <%= f.select :category, Photo.categories.keys %>
   </div>
   <div class="field">
     <%= f.label :album_id %><br>
