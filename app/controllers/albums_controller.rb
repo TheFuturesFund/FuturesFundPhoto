@@ -10,8 +10,17 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
-    @photos = @album.photos.ordered_by_category
-                           .ordered_reverse_chronologically_by_created_at
+    @category = params[:category] || "all"
+    if @category == "all"
+      @photos = @album.photos.ordered_by_category
+                             .ordered_reverse_chronologically_by_created_at
+    elsif Photo.categories.keys.include? @category
+      @photos = @album.photos.where(category: Photo.categories[@category])
+                             .ordered_by_category
+                             .ordered_reverse_chronologically_by_created_at
+    else
+      @photos = []
+    end
   end
 
   # GET /albums/new

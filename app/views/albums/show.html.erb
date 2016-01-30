@@ -8,10 +8,10 @@
 </div>
 <div class="row">
   <div class="btn-group">
-    <%= link_to "All", "#", class: "btn btn-primary" %>
-    <%= link_to "Outtakes", "#", class: "btn btn-default" %>
-    <%= link_to "Selects", "#", class: "btn btn-default" %>
-    <%= link_to "Top Selects", "#", class: "btn btn-default" %>
+    <%= link_to "All", album_path(@album, category: "all"), class: photo_category_button_class(@category, "all") %>
+    <%= link_to "Outtakes", album_path(@album, category: "outtake_category"), class: photo_category_button_class(@category, "outtake_category") %>
+    <%= link_to "Selects", album_path(@album, category: "select_category"), class: photo_category_button_class(@category, "select_category") %>
+    <%= link_to "Top Selects", album_path(@album, category: "top_select_category"), class: photo_category_button_class(@category, "top_select_category") %>
   </div>
 </div>
 <hr/>
@@ -32,7 +32,7 @@
 <hr/>
 <% if policy(:photo).new? %>
   <div class="row">
-    <%= link_to "New Photo", new_album_photo_path(@album), class: "btn btn-primary" %>
+    <%= link_to "Add Photos", new_album_photo_path(@album), class: "btn btn-primary" %>
   </div>
 <% end %>
 <hr/>
