@@ -1,14 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="page-header">
+    <h1><%= @album.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <h2>Photos</h2>
+</div>
+<div class="row">
+  <div class="btn-group">
+    <%= link_to "All", "#", class: "btn btn-primary" %>
+    <%= link_to "Outtakes", "#", class: "btn btn-default" %>
+    <%= link_to "Selects", "#", class: "btn btn-default" %>
+    <%= link_to "Top Selects", "#", class: "btn btn-default" %>
+  </div>
+</div>
+<hr/>
+<% @photos.each_slice(4) do |photo_slice| %>
+  <div class="row">
+    <% photo_slice.each do |photo| %>
+      <div class="col-md-3">
+        <h3><%= photo.name %></h3>
+        <div class="image-container">
+          <%= image_tag(attachment_url(photo, :image, fallback: "default_photo_image.png"), width: "100%") %>
+        </div>
+        <hr/>
+        <%= link_to "View", photo_path(photo), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<hr/>
+<% if policy(:photo).new? %>
+  <div class="row">
+    <%= link_to "New Photo", new_album_photo_path(@album), class: "btn btn-primary" %>
+  </div>
+<% end %>
+<hr/>
+<div class="row">
+  <% if policy(@album).edit? %>
+    <%= link_to "Edit Student", edit_album_path(@album), class: "btn btn-primary" %>
+  <% end %>
+  <% if policy(@album).destroy? %>
+    <%= link_to "Delete Student", album_path(@album), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete student?" } %>
+  <% end %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @album.name %>
-</p>
-
-<p>
-  <strong>Student:</strong>
-  <%= @album.student_id %>
-</p>
-
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>

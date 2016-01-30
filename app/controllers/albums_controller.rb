@@ -10,6 +10,8 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @photos = @album.photos.ordered_by_category
+                           .ordered_reverse_chronologically_by_created_at
   end
 
   # GET /albums/new
