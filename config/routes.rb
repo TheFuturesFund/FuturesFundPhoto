@@ -17,14 +17,17 @@ Rails.application.routes.draw do
   get :dashboard, to: 'users#dashboard'
 
   # Classrooms
-  resources :classrooms
+  resources :classrooms, shallow: true do
+    # Students
+    resources :students, except: :index, shallow: true do
+      # Albums
+      resources :albums, except: :index, shallow: true do
+        # Photos
+        resources :photos, except: :index
+      end
+    end
+  end  
 
-  # Students
-  resources :students
-
-  # Albums
-  resources :albums
-
-  # Photos
-  resources :photos
+  
+  
 end

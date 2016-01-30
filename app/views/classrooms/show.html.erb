@@ -24,7 +24,7 @@
 </div>
 <% if policy(:student).new? %>
   <div class="row">
-    <%= link_to "Add Student", new_student_path, class: "btn btn-primary" %>
+    <%= link_to "Add Student", new_classroom_student_path(@classroom), class: "btn btn-primary" %>
   </div>
 <% end %>
 <hr/>

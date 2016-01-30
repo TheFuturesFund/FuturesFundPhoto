@@ -24,7 +24,7 @@
 </div>
 <% if policy(:album).new? %>
   <div class="row">
-    <%= link_to "New Album", new_album_path, class: "btn btn-primary" %>
+    <%= link_to "New Album", new_student_album_path(@student), class: "btn btn-primary" %>
   </div>
 <% end %>
 <hr/>
