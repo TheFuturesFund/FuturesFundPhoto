@@ -1,14 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @student.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @student.last_name %>
-</p>
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div class="row">
+  <div class="page-header">
+    <h1><%= @student.full_name %></h1>
+  </div>
+</div>
+<div class="row">
+  <h2>Albums</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Photos</th>
+      <th>Created At</th>
+      <th>Album</th>
+    </tr>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.name %></td>
+        <td><%= album.photos.count %></td>
+        <td><%= album.created_at.strftime("%b %e, %Y") %></td>
+        <td><%= link_to "View", album_path(album) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<% if policy(:album).new? %>
+  <div class="row">
+    <%= link_to "New Album", new_album_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
+<hr/>
+<div class="row">
+  <% if policy(@student).edit? %>
+    <%= link_to "Edit Student", edit_student_path(@student), class: "btn btn-primary" %>
+  <% end %>
+  <% if policy(@student).destroy? %>
+    <%= link_to "Delete Student", student_path(@student), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete student?" } %>
+  <% end %>
+</div>

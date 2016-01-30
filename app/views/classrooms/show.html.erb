@@ -1,9 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @classroom.name %>
-</p>
-
-<%= link_to 'Edit', edit_classroom_path(@classroom) %> |
-<%= link_to 'Back', classrooms_path %>
+<div class="row">
+  <div class="page-header">
+    <h1><%= @classroom.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <h2>Students</h2>
+  <table class="table">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Student</th>
+    </tr>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= link_to student.user.email, "mailto:#{student.user.email}" %></td>
+        <td><%= link_to "View", student_path(student) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<% if policy(:student).new? %>
+  <div class="row">
+    <%= link_to "Add Student", new_student_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
+<hr/>
+<div class="row">
+  <% if policy(@classroom).edit? %>
+    <%= link_to "Edit Classroom", edit_classroom_path(@classroom), class: "btn btn-primary" %>
+  <% end %>
+  <% if policy(@classroom).destroy? %>
+    <%= link_to "Delete Classroom", classroom_path(@classroom), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete classroom?" } %>
+  <% end %>
+</div>

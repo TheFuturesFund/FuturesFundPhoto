@@ -41,11 +41,13 @@ end
     )
     3.times do
       album = Album.create(
+        student: student,
         name: Faker::Lorem.sentence,
       )
       20.times do
         Photo.create(
-          name: Faker::Lorem.sentence
+          album: album,
+          name: Faker::Lorem.sentence,
         )
       end
     end

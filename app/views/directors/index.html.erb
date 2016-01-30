@@ -1,5 +1,7 @@
 <div class="row">
-  <h1>Directors</h1>
+  <div class="page-header">
+    <h1>Directors</h1>
+  </div>
 </div>
 <div class="row">
   <table class="table">
@@ -7,15 +9,20 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
-      <th></th>
+      <th>Profile</th>
     </tr>
     <% @directors.each do |director| %>
       <tr>
         <td><%= director.first_name %></td>
         <td><%= director.last_name %></td>
-        <td><%= director.user.email %></td>
-        <td><%= link_to "Profile", director_path(director) %></td>
+        <td><%= link_to director.user.email, "mailto:#{director.user.email}" %></td>
+        <td><%= link_to "View", director_path(director) %></td>
       <tr>
     <% end %>
   </table>
 </div>
+<% if policy(:director).create? %>
+  <div class="row">
+    <%= link_to "New Director", new_director_path, class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
 
   def show
     authorize @student
+    @albums = @student.albums.ordered_reverse_chronologically_by_created_at
   end
 
   def new

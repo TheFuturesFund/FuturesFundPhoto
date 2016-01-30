@@ -5,4 +5,8 @@ class Student < ActiveRecord::Base
   has_many :classroom_students
   has_many :classrooms, through: :classroom_students
   has_many :albums
+
+  def self.ordered_alphabetically_by_last_name
+    order(last_name: :asc)
+  end
 end

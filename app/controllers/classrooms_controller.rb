@@ -12,6 +12,7 @@ class ClassroomsController < ApplicationController
   # GET /classrooms/1.json
   def show
     authorize @classroom
+    @students = @classroom.students.ordered_alphabetically_by_last_name
   end
 
   # GET /classrooms/new
