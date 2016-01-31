@@ -37,24 +37,20 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
     @album = @student.albums.new(album_params)
-      if @album.save
-        redirect_to new_album_photo_path(@album), notice: 'Album was successfully created.'
-      else
-        render :new
-      end
+    if @album.save
+      redirect_to new_album_photo_path(@album), notice: 'Album was successfully created.'
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    if @album.update(album_params)
+      redirect_to @album, notice: 'Album was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -70,10 +66,7 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1.json
   def destroy
     @album.destroy
-    respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to albums_url, notice: 'Album was successfully destroyed.'
   end
 
   private

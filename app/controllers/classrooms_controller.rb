@@ -32,29 +32,21 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.new(classroom_params)
     authorize @classroom
 
-    respond_to do |format|
-      if @classroom.save
-        format.html { redirect_to @classroom, notice: 'Classroom was successfully created.' }
-        format.json { render :show, status: :created, location: @classroom }
-      else
-        format.html { render :new }
-        format.json { render json: @classroom.errors, status: :unprocessable_entity }
-      end
+    if @classroom.save
+      redirect_to @classroom, notice: 'Classroom was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /classrooms/1
   # PATCH/PUT /classrooms/1.json
   def update
-    respond_to do |format|
-      authorize @classroom
-      if @classroom.update(classroom_params)
-        format.html { redirect_to @classroom, notice: 'Classroom was successfully updated.' }
-        format.json { render :show, status: :ok, location: @classroom }
-      else
-        format.html { render :edit }
-        format.json { render json: @classroom.errors, status: :unprocessable_entity }
-      end
+    authorize @classroom
+    if @classroom.update(classroom_params)
+      redirect_to @classroom, notice: 'Classroom was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -63,10 +55,7 @@ class ClassroomsController < ApplicationController
   def destroy
     authorize @classroom
     @classroom.destroy
-    respond_to do |format|
-      format.html { redirect_to classrooms_url, notice: 'Classroom was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to classrooms_url, notice: 'Classroom was successfully destroyed.'
   end
 
   private

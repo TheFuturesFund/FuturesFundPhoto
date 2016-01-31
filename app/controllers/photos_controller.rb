@@ -17,14 +17,10 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     authorize @photo
 
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
-      else
-        format.html { render :new }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
+    if @photo.save
+      redirect_to @photo, notice: 'Photo was successfully created.'
+    else
+      render :new
     end
   end
 

@@ -22,12 +22,10 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
     authorize @teacher
 
-    respond_to do |format|
-      if @teacher.save
-        redirect_to @teacher, notice: 'Teacher was successfully created.'
-      else
-        render :new
-      end
+    if @teacher.save
+      redirect_to @teacher, notice: 'Teacher was successfully created.'
+    else
+      render :new
     end
   end
 
