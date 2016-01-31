@@ -1,0 +1,6 @@
+class AddClassroomIdToStudents < ActiveRecord::Migration
+  def change
+    drop_table :classroom_students
+    add_column :students, :classroom_id, :integer
+  end
+end
