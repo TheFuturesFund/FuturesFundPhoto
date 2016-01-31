@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="page-header">
+    <h1>Add photos to <%= @album.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <% if @album.errors.any? %>
+    <div class="alert alert-danger">
+      <p><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</p>>
+      <ul>
+      <% @album.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <%= form_for(@album, url: add_photos_album_path(@album), method: :put) do |f| %>
+    <div class="form-group">
+      <%= f.label :photos %><br?>
+      <%= f.attachment_field :photos_images, multiple: true %>
+    </div>
+    <%= f.submit "Add Photos", class: "btn btn-primary" %>
+  <% end %>
+</div>

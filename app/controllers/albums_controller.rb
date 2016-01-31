@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:show, :edit, :update, :destroy, :add_photos]
 
   # GET /albums
   # GET /albums.json
@@ -61,6 +61,14 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def add_photos
+    if @album.update(add_photos_params)
+      redirect_to @album, notice: "Photos were successfully added"
+    else
+      render "photos/new"
+    end
+  end
+
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
@@ -80,5 +88,9 @@ class AlbumsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
       params.require(:album).permit(:name, :student_id, photos_images: [])
+    end
+
+    def add_photos_params
+      params.require(:album).permit(photos_images: [])
     end
 end

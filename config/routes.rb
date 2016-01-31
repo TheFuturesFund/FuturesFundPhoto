@@ -23,7 +23,8 @@ Rails.application.routes.draw do
       # Albums
       resources :albums, except: :index, shallow: true do
         # Photos
-        resources :photos, only: [:new, :edit, :delete, :update]
+        resources :photos, only: [:new, :edit, :destroy, :update]
+        put :add_photos, on: :member
       end
     end
   end  

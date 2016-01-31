@@ -5,7 +5,9 @@ class Photo < ActiveRecord::Base
     :top_select_category
   ]
 
-  validates :name, presence: true
+  before_save :set_initial_name
+
+  validates :name, presence: true, on: :update
   validates :category, presence: true
   validates :album, presence: true
 
@@ -14,7 +16,7 @@ class Photo < ActiveRecord::Base
   belongs_to :album
 
   def set_initial_name
-    name = SecureRandom.uuid
+    name ||= SecureRandom.uuid
   end
 
   def self.ordered_by_category
