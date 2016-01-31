@@ -49,8 +49,7 @@ class PhotosController < ApplicationController
     if @photo.update(photo_params)
       redirect_to album_path(@photo.album, category: params[:redirect_category]), notice: 'Photo was successfully updated.'
     else
-      format.html { render :edit }
-      format.json { render json: @photo.errors, status: :unprocessable_entity }
+      render :edit
     end
   end
 

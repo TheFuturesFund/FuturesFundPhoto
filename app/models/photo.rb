@@ -5,6 +5,10 @@ class Photo < ActiveRecord::Base
     :top_select_category
   ]
 
+  validates :name, presence: true
+  validates :category, presence: true
+  validates :album, presence: true
+
   attachment :image
 
   belongs_to :album
