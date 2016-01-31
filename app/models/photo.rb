@@ -7,7 +7,6 @@ class Photo < ActiveRecord::Base
 
   before_save :set_initial_name
 
-  validates :name, presence: true, on: :update
   validates :category, presence: true
   validates :album, presence: true
 

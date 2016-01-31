@@ -19,9 +19,9 @@
 <hr/>
 <div class="row">
   <% if policy(@album).edit? %>
-    <%= link_to "Edit Student", edit_album_path(@album), class: "btn btn-primary" %>
+    <%= link_to "Edit album", edit_album_path(@album), class: "btn btn-primary" %>
   <% end %>
   <% if policy(@album).destroy? %>
-    <%= link_to "Delete Student", album_path(@album), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete student?" } %>
+    <%= link_to "Delete album", album_path(@album), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete student?" } %>
   <% end %>
 </div>

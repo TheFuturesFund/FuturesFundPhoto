@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :set_student, only: [:new, :create]
   before_action :set_album, only: [:show, :edit, :update, :destroy, :add_photos]
 
   # GET /albums
@@ -35,16 +36,12 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(album_params)
-    respond_to do |format|
+    @album = @student.albums.new(album_params)
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: @album }
+        redirect_to new_album_photo_path(@album), notice: 'Album was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /albums/1
@@ -80,7 +77,10 @@ class AlbumsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_student
+      @student = Student.find(params[:student_id])
+    end
+
     def set_album
       @album = Album.find(params[:id])
     end
