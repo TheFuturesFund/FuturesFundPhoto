@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Devise authentication framework
 gem 'devise', '~> 3.5.0'
+gem 'devise_invitable', '~> 1.5.2'
 # Use Dotenv to load environment variables outside of foreman
 gem 'dotenv-rails'
 # Use Pundit for authorizations
@@ -43,5 +44,7 @@ group :development, :test do
   gem 'faker'
   # Use pry to debug on the console
   gem 'pry-rails'
+  # Use letter opener to preview emails
+  gem "letter_opener"
 end
 

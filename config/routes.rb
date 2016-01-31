@@ -1,9 +1,12 @@
 Rails.application.routes.draw do 
   # Root
-  root to: 'users#dashboard'
+  root to: "users#dashboard"
   
   # Devise
-  devise_for :users
+  devise_for :users, :skip => [:invitation]
+  as :user do
+    get "/users/invitation/accept" => "devise/invitations#edit", as: "accept_user_invitation"
+  end
   resources :users
 
   # Directors
