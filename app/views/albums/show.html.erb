@@ -6,29 +6,10 @@
 <div class="row">
   <h2>Photos</h2>
 </div>
-<div class="row">
-  <div class="btn-group">
-    <%= link_to "All", album_path(@album, category: "all"), class: photo_category_button_class(@category, "all") %>
-    <%= link_to "Outtakes", album_path(@album, category: "outtake_category"), class: photo_category_button_class(@category, "outtake_category") %>
-    <%= link_to "Selects", album_path(@album, category: "select_category"), class: photo_category_button_class(@category, "select_category") %>
-    <%= link_to "Top Selects", album_path(@album, category: "top_select_category"), class: photo_category_button_class(@category, "top_select_category") %>
-  </div>
-</div>
+<%= render "category_filter_buttons" %>
 <hr/>
-<% @photos.each_slice(4) do |photo_slice| %>
-  <div class="row">
-    <% photo_slice.each do |photo| %>
-      <div class="col-md-3">
-        <h3><%= photo.name %></h3>
-        <div class="image-container">
-          <%= image_tag(attachment_url(photo, :image, fallback: "default_photo_image.png"), width: "100%") %>
-        </div>
-        <hr/>
-        <%= link_to "View", photo_path(photo), class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+<%= render "photo_grid", photos: @photos %>
+<%= render "photo_modals", photos: @photos %>
 <hr/>
 <% if policy(:photo).new? %>
   <div class="row">
@@ -44,4 +25,3 @@
     <%= link_to "Delete Student", album_path(@album), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete student?" } %>
   <% end %>
 </div>
-

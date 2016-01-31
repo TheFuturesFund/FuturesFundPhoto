@@ -6,4 +6,8 @@ module AlbumsHelper
       "btn btn-default"
     end
   end
+
+  def photo_modal_id(photo)
+    "photoModal#{photo.id}"
+  end
 end
