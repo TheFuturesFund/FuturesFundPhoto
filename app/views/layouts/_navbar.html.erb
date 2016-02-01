@@ -20,9 +20,6 @@
           <% elsif current_user.teacher? %>
             <li><%= link_to "Teachers", teachers_path %></li>
             <li><%= link_to "Classes", classrooms_path %></li>
-          <% elsif current_user.student? %>
-            <li><a href="#">Class</a></li>
-            <li><a href="#">Albums</a></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
