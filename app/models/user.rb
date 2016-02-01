@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   belongs_to :role, polymorphic: true
 
+  validates_associated :role
   validates :role, presence: true
   
   # director?, teacher?, student? methods

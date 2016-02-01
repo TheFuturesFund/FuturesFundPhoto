@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   root to: "users#dashboard"
   
   # Devise
-  devise_for :users, :skip => [:invitation]
+  devise_for :users, skip: [:invitations]
   as :user do
-    get "/users/invitation/accept" => "devise/invitations#edit", as: "accept_user_invitation"
+    get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
+    post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+    put "/users/invitation" => "devise/invitations#update", as: :new_user_invitation
   end
-  resources :users
 
   # Directors
   resources :directors

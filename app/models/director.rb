@@ -1,5 +1,8 @@
 class Director < ActiveRecord::Base
   include FullNameable
 
-  has_one :user, as: :role
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  has_one :user, as: :role, dependent: :destroy
 end

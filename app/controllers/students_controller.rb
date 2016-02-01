@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :set_classroom, only: [:create, :new]
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,8 +13,8 @@ class StudentsController < ApplicationController
   end
 
   def new
+    @user = User.new
     @student = Student.new
-    authorize @student
   end
 
   def edit
@@ -21,11 +22,12 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = Student.new(student_params)
-    authorize @student
-
-    if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+    @user = User.new(user_params)
+    @student = @classroom.students.new(student_params)
+    @user.role = @student
+    if @student.valid? && @user.save
+      @user.invite!
+      redirect_to root_path, notice: "Student was successfully invited."
     else
       render :new
     end
@@ -52,7 +54,19 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def set_classroom
+    @classroom = Classroom.find(params[:classroom_id])
+  end
+
   def student_params
     params.require(:student).permit(:first_name, :last_name)
+  end
+
+  def user_params
+    temp_password = SecureRandom.urlsafe_base64
+    local_params = params.require(:user).permit(:email)
+    local_params[:password] = temp_password
+    local_params[:password_confirmation] = temp_password
+    local_params
   end
 end
