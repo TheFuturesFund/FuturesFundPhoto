@@ -6,4 +6,16 @@ class UsersController < ApplicationController
       redirect_to new_user_session_url
     end
   end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def change_password
+
+  end
 end
