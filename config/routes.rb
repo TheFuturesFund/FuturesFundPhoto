@@ -17,9 +17,7 @@ Rails.application.routes.draw do
   resources :teachers
 
   # Users
-  resources :users, only: [:edit, :update] do
-    get :change_password, on: :member
-  end
+  resources :users, only: [:edit, :update]
 
   # Classrooms
   resources :classrooms, shallow: true do
