@@ -1,4 +1,8 @@
 class AlbumPolicy < ApplicationPolicy
+  def new?
+    user.present?
+  end
+
   def index?
     if director? || teacher?
       true
