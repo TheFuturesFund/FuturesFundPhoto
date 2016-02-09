@@ -1,15 +1,13 @@
 <% @photos.each do |photo| %>
   <div class="modal fade" id="<%= photo_modal_id(photo) %>" tabindex="-1" role="dialog" aria-labelledby="<%= photo_modal_id(photo) %>Label">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h3 class="modal-title" id="<%= photo_modal_id(photo) %>Label"><%= photo.name %></h3>
         </div>
         <div class="modal-body">
-          <div class="image-container">
-            <%= image_tag(attachment_url(photo, :image, fallback: "default_photo_image.png"), width: "100%") %>
-          </div>
+          <%= image_tag(attachment_url(photo, :image, :limit, 500, 500, fallback: "default_photo_image.png"), width: "500px") %>
         </div>
         <div class="modal-footer">
           <div class="btn-group">

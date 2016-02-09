@@ -4,7 +4,7 @@
       <div class="col-sm-3">
         <div class="image-container">
           <a href="#" data-toggle="modal" data-target="#<%= photo_modal_id(photo) %>">
-            <%= image_tag(attachment_url(photo, :image, fallback: "default_photo_image.png"), width: "100%") %>
+            <%= image_tag(attachment_url(photo, :image, :limit, 300, 300, fallback: "default_photo_image.png"), width: "100%") %>
           </a>
         </div>
         <% if photo.name %>
