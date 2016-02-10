@@ -30,6 +30,9 @@ gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem "refile-s3"
 
+# Use AWS SES to send emails
+gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
