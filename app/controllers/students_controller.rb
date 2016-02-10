@@ -15,6 +15,7 @@ class StudentsController < ApplicationController
   def new
     @user = User.new
     @student = Student.new
+    authorize @student
   end
 
   def edit
@@ -25,6 +26,7 @@ class StudentsController < ApplicationController
     @user = User.new(user_params)
     @student = @classroom.students.new(student_params)
     @user.role = @student
+    authorize @student
     if @student.valid? && @user.save
       @user.invite!
       redirect_to root_path, notice: "Student was successfully invited."

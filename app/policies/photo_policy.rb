@@ -8,7 +8,7 @@ class PhotoPolicy < ApplicationPolicy
   end
 
   def new?
-    user.present?
+    mutate?
   end
 
   def create?

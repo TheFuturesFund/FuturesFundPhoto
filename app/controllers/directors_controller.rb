@@ -13,6 +13,7 @@ class DirectorsController < ApplicationController
   def new
     @user = User.new
     @director = Director.new
+    authorize @director
   end
 
   def edit
@@ -23,6 +24,7 @@ class DirectorsController < ApplicationController
     @user = User.new(user_params)
     @director = Director.new(director_params)
     @user.role = @director
+    authorize @director
     if @director.valid? && @user.save
       @user.invite!
       redirect_to root_path, notice: "Director was successfully invited."
@@ -33,7 +35,6 @@ class DirectorsController < ApplicationController
 
   def update
     authorize @director
-
     if @director.update(director_params)
       redirect_to @director, notice: 'Director was successfully updated.'
     else

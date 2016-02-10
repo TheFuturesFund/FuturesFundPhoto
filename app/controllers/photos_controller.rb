@@ -4,6 +4,7 @@ class PhotosController < ApplicationController
   # GET /photos/new
   def new
     @album = Album.find(params[:album_id])
+    authorize @album.photos.new
   end
 
   # GET /photos/1/edit

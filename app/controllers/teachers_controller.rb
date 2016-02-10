@@ -13,6 +13,7 @@ class TeachersController < ApplicationController
   def new
     @user = User.new
     @teacher = Teacher.new
+    authorize @teacher
   end
 
   def edit
@@ -22,6 +23,7 @@ class TeachersController < ApplicationController
     @user = User.new(user_params)
     @teacher = Teacher.new(teacher_params)
     @user.role = @teacher
+    authorize @teacher
     if @teacher.valid? && @user.save
       @user.invite!
       redirect_to root_path, notice: "Teacher was successfully invited."

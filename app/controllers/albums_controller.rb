@@ -6,11 +6,13 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
     @albums = Album.all
+    authorize @albums
   end
 
   # GET /albums/1
   # GET /albums/1.json
   def show
+    authorize @album
     @category = params[:category] || "all"
     if @category == "all"
       @photos = @album.photos.ordered_by_category
@@ -26,7 +28,8 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   def new
-    @album = Album.new
+    @album = @student.albums.new
+    authorize @album
   end
 
   # GET /albums/1/edit
@@ -37,6 +40,7 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
     @album = @student.albums.new(album_params)
+    authorize @album
     if @album.save
       redirect_to new_album_photo_path(@album), notice: 'Album was successfully created.'
     else
@@ -47,6 +51,7 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
+    authorize @album
     if @album.update(album_params)
       redirect_to @album, notice: 'Album was successfully updated.'
     else
@@ -55,6 +60,7 @@ class AlbumsController < ApplicationController
   end
 
   def add_photos
+    authorize @album, :update?
     if @album.update(add_photos_params)
       redirect_to @album, notice: "Photos were successfully added"
     else
@@ -65,8 +71,10 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
+    authorize @album
+    @student = @album.student
     @album.destroy
-    redirect_to albums_url, notice: 'Album was successfully destroyed.'
+    redirect_to student_path(@student), notice: 'Album was successfully destroyed.'
   end
 
   private

@@ -29,7 +29,7 @@
       <%= link_to "Edit album", edit_album_path(@album), class: "btn btn-primary" %>
     <% end %>
     <% if policy(@album).destroy? %>
-      <%= link_to "Delete album", album_path(@album), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete student?" } %>
+      <%= link_to "Delete album", album_path(@album), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete album?" } %>
     <% end %>
   </div>
 </div>
