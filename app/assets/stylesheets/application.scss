@@ -30,3 +30,13 @@
 div#footer-spacer {
   height: 45px;
 }
+
+a.brand {
+  color: #777;
+  line-height: 16px;
+  font-size: 18px;
+}
+
+a.brand:hover {
+  text-decoration: none;
+}
