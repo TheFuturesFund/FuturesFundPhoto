@@ -27,6 +27,10 @@ class AlbumPolicy < ApplicationPolicy
     user.present?
   end
 
+  def edit?
+
+  end
+
   def update?
     if director? || teacher?
       true
