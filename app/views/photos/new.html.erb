@@ -21,12 +21,13 @@
 </div>
 <div class="row">
   <div class="col-lg-12">
-    <%= form_for(@album, url: add_photos_album_path(@album), method: :put) do |f| %>
+    <%= form_for(@album, url: add_photos_album_path(@album), method: :put, html: { id: "add-photos-form" }) do |f| %>
       <div class="form-group">
         <%= f.label :photos %>
-        <%= f.attachment_field :photos_images, multiple: true %>
+        <%= f.attachment_field :photos_images, multiple: true, direct: true %>
       </div>
-      <%= f.submit "Add Photos", class: "btn btn-primary" %>
+      <p hidden=true id="upload-progress-status"></p>
+      <%= f.submit "Add Photos", class: "btn btn-primary", id: "add-photos-submit-button" %>
     <% end %>
   </div>
 </div>
