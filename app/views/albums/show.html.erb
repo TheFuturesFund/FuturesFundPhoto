@@ -12,8 +12,10 @@
 </div>
 <%= render "category_filter_buttons" %>
 <hr/>
-<%= render "photo_grid", photos: @photos %>
-<%= render "photo_modals", photos: @photos %>
+<%= render "photo_grid" %>
+<%= render "photo_modals" %>
+<hr/>
+<%= render "photo_pagination" %>
 <hr/>
 <% if policy(:photo).new? %>
   <div class="row">

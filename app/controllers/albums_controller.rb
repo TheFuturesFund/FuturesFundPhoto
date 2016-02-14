@@ -13,14 +13,19 @@ class AlbumsController < ApplicationController
   # GET /albums/1.json
   def show
     authorize @album
+    @page = (params[:page] || 1).to_i
     @category = params[:category] || "all"
     if @category == "all"
       @photos = @album.photos.ordered_by_category
                              .ordered_reverse_chronologically_by_created_at
+                             .page(@page)
+                             .per(6)
     elsif Photo.categories.keys.include? @category
       @photos = @album.photos.where(category: Photo.categories[@category])
                              .ordered_by_category
                              .ordered_reverse_chronologically_by_created_at
+                             .page(@page)
+                             .per(6)
     else
       @photos = []
     end
@@ -78,20 +83,21 @@ class AlbumsController < ApplicationController
   end
 
   private
-    def set_student
-      @student = Student.find(params[:student_id])
-    end
 
-    def set_album
-      @album = Album.find(params[:id])
-    end
+  def set_student
+    @student = Student.find(params[:student_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def album_params
-      params.require(:album).permit(:name, :student_id, photos_images: [])
-    end
+  def set_album
+    @album = Album.find(params[:id])
+  end
 
-    def add_photos_params
-      params.require(:album).permit(photos_images: [])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def album_params
+    params.require(:album).permit(:name, :student_id, photos_images: [])
+  end
+
+  def add_photos_params
+    params.require(:album).permit(photos_images: [])
+  end
 end

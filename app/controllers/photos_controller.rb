@@ -30,7 +30,7 @@ class PhotosController < ApplicationController
   def update
     authorize @photo
     if @photo.update(photo_params)
-      redirect_to album_path(@photo.album, category: params[:redirect_category]), notice: 'Photo was successfully updated.'
+      redirect_to album_path(@photo.album, category: params[:redirect_category], page: params[:page]), notice: 'Photo was successfully updated.'
     else
       render :edit
     end

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -29,6 +30,8 @@ gem 'pundit'
 gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem "refile-s3"
+# Use kaminari for pagination
+gem 'kaminari'
 
 # Use AWS SES to send emails
 gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'

@@ -1,7 +1,7 @@
-<% @photos.each_slice(4) do |photo_slice| %>
+<% @photos.each_slice(3) do |photo_slice| %>
   <div class="row">
     <% photo_slice.each do |photo| %>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <div class="image-container">
           <a href="#" data-toggle="modal" data-target="#<%= photo_modal_id(photo) %>">
             <%= image_tag(attachment_url(photo, :image, :limit, 300, 300, fallback: "default_photo_image.png"), width: "100%") %>
