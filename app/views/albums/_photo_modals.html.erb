@@ -16,6 +16,8 @@
             <%= link_to "Top Select", photo_path(photo, photo: {  category: "top_select_category" }, redirect_category: @category, page: @page), method: :put, class: photo_category_button_class(photo.category, "top_select_category") %>
           </div>
           <hr>
+          <%= link_to "Download", attachment_url(photo, :image), class: "btn btn-primary", download: "#{photo.student.first_name}-#{photo.student.last_name}-#{photo.id}" %>
+          <hr>
           <%= link_to "Edit", edit_photo_path(photo), class: "btn btn-primary" %>
           <%= link_to "Delete", photo_path(photo), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete photo?" } %>
         </div>

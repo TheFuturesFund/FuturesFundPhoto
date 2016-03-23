@@ -13,6 +13,7 @@ class Photo < ActiveRecord::Base
   attachment :image
 
   belongs_to :album
+  has_one :student, through: :album
 
   def set_initial_name
     name ||= SecureRandom.uuid
