@@ -7,7 +7,14 @@
           <h3 class="modal-title" id="<%= photo_modal_id(photo) %>Label"><%= photo.name %></h3>
         </div>
         <div class="modal-body">
-          <%= image_tag(attachment_url(photo, :image, :limit, 500, 500, fallback: "default_photo_image.png"), width: "500px") %>
+          <%= image_tag("default_photo_image.png", width: "500px") %>
+          <script>
+            $("#<%= photo_modal_id(photo) %>").on("shown.bs.modal", function() {
+              $("#<%= photo_modal_id(photo) %> .modal-body img").attr(
+                "src", "<%= attachment_url(photo, :image, fallback: 'default_photo_image.png') %>"
+              )
+            })
+          </script>
         </div>
         <div class="modal-footer">
           <div class="btn-group">
