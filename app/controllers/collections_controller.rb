@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
   end
 
   def showcase
-    # TODO
+    @photos = @student.photos.showcase
   end
 
   private

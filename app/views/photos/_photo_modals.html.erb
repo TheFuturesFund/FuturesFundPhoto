@@ -22,6 +22,7 @@
             <%= link_to "Select", photo_path(photo, photo: { category: "select_category" }, redirect_url: request.original_url), method: :put, class: photo_category_button_class(photo.category, "select_category") %>
             <%= link_to "Top Select", photo_path(photo, photo: {  category: "top_select_category" }, redirect_url: request.original_url), method: :put, class: photo_category_button_class(photo.category, "top_select_category") %>
           </div>
+          <%= link_to "Showcase", photo_path(photo, photo: { showcase: !photo.showcase? }, redirect_url: request.original_url), method: :put, class: photo_showcase_button_class(photo) %>
           <hr>
           <%= link_to "Download", attachment_url(photo, :image), class: "btn btn-primary", download: "#{photo.student.first_name}-#{photo.student.last_name}-#{photo.id}" %>
           <hr>

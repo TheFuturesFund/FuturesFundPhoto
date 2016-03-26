@@ -19,6 +19,10 @@ class Photo < ActiveRecord::Base
     name ||= SecureRandom.uuid
   end
 
+  def self.showcase
+    where(showcase: true)
+  end
+
   def self.ordered_by_category
     order(category: :desc)
   end
