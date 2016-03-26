@@ -15,6 +15,12 @@
         <th>Created</th>
         <th>Album</th>
       </tr>
+      <tr>
+        <td>Top Selects</td>
+        <td><%= @student.photos.top_select_category.count %></td>
+        <td><%= @student.created_at.strftime("%b %e, %Y") %></td>
+        <td><%= link_to "View", top_selects_path(@student) %></td>
+      </tr>
       <% @albums.each do |album| %>
         <tr>
           <td><%= album.name %></td>

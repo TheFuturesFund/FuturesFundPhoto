@@ -18,9 +18,9 @@
         </div>
         <div class="modal-footer">
           <div class="btn-group">
-            <%= link_to "Outtake", photo_path(photo, photo: { category: "outtake_category" }, redirect_category: @category, page: @page), method: :put, class: photo_category_button_class(photo.category, "outtake_category") %>
-            <%= link_to "Select", photo_path(photo, photo: { category: "select_category" }, redirect_category: @category, page: @page), method: :put, class: photo_category_button_class(photo.category, "select_category") %>
-            <%= link_to "Top Select", photo_path(photo, photo: {  category: "top_select_category" }, redirect_category: @category, page: @page), method: :put, class: photo_category_button_class(photo.category, "top_select_category") %>
+            <%= link_to "Outtake", photo_path(photo, photo: { category: "outtake_category" }, redirect_url: request.original_url), method: :put, class: photo_category_button_class(photo.category, "outtake_category") %>
+            <%= link_to "Select", photo_path(photo, photo: { category: "select_category" }, redirect_url: request.original_url), method: :put, class: photo_category_button_class(photo.category, "select_category") %>
+            <%= link_to "Top Select", photo_path(photo, photo: {  category: "top_select_category" }, redirect_url: request.original_url), method: :put, class: photo_category_button_class(photo.category, "top_select_category") %>
           </div>
           <hr>
           <%= link_to "Download", attachment_url(photo, :image), class: "btn btn-primary", download: "#{photo.student.first_name}-#{photo.student.last_name}-#{photo.id}" %>

@@ -30,5 +30,10 @@ Rails.application.routes.draw do
         put :add_photos, on: :member
       end
     end
-  end  
+  end 
+
+  # Collectios
+  [:top_selects, :showcase].each do |collection|
+    get "students/:student_id/#{collection}", to: "collections##{collection}", as: "#{collection}"
+  end
 end
