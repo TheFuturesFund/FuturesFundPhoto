@@ -13,7 +13,7 @@ class Photo < ActiveRecord::Base
   attachment :image
 
   belongs_to :album
-  has_one :student, through: :album
+  has_one :user, through: :album
 
   def set_initial_name
     name ||= SecureRandom.uuid
@@ -29,5 +29,5 @@ class Photo < ActiveRecord::Base
 
   def self.ordered_reverse_chronologically_by_created_at
     order(created_at: :desc)
-  end 
+  end
 end

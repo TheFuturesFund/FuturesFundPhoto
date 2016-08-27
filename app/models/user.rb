@@ -1,17 +1,24 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :recoverable, :trackable, :validatable
 
-  belongs_to :role, polymorphic: true
+  enum role: [:student, :teacher, :director]
 
-  validates_associated :role
+  has_many :albums, dependent: :destroy
+  has_many :photos, through: :albums
+  belongs_to :classroom
+
+  validates :classroom, presence: true, if: :student?
+  validates :classroom, absence: true, if: :teacher?
+  validates :classroom, absence: true, if: :director?
+  validates :first_name, presence: true, length: { minimum: 3 }
+  validates :last_name, presence: true, length: { minimum: 3 }
   validates :role, presence: true
-  
-  # director?, teacher?, student? methods
-  [Director, Teacher, Student].each do |role_class|
-    define_method("#{role_class.name.underscore}?") do
-      role_type == role_class.name
-    end
+
+  def full_name
+    [first_name, last_name].compact.join(' ')
+  end
+
+  def self.ordered_alphabetically_by_last_name
+    order(last_name: :asc)
   end
 end

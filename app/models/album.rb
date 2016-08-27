@@ -1,9 +1,9 @@
 class Album < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :user
   has_many :photos, dependent: :destroy
 
   validates :name, presence: true
-  validates :student, presence: true
+  validates :user, presence: true
 
   accepts_attachments_for :photos, attachment: :image, append: true
 

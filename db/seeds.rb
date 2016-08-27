@@ -1,26 +1,24 @@
 3.times do
-  Director.create(
+  User.create(
+    role: "director",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    user: User.new(
-      email: Faker::Internet.email,
-      username: Faker::Internet.user_name,
-      password: "password",
-      password_confirmation: "password",
-    )
+    email: Faker::Internet.email,
+    username: Faker::Internet.user_name,
+    password: "password",
+    password_confirmation: "password",
   )
 end
 
 10.times do
-  Teacher.create(
+  User.create(
+    role: "teacher",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    user: User.new(
-      email: Faker::Internet.email,
-      username: Faker::Internet.user_name,
-      password: "password",
-      password_confirmation: "password",
-    )
+    email: Faker::Internet.email,
+    username: Faker::Internet.user_name,
+    password: "password",
+    password_confirmation: "password",
   )
 end
 
@@ -29,20 +27,19 @@ end
     name: Faker::Lorem.sentence,
   )
   10.times do
-    student = Student.create(
+    student = User.create(
+      role: "student",
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       classroom: classroom,
-      user: User.new(
-        email: Faker::Internet.email,
-        username: Faker::Internet.user_name,
-        password: "password",
-        password_confirmation: "password",
-      )
+      email: Faker::Internet.email,
+      username: Faker::Internet.user_name,
+      password: "password",
+      password_confirmation: "password",
     )
     3.times do
       album = Album.create(
-        student: student,
+        user: student,
         name: Faker::Lorem.sentence,
       )
       20.times do
