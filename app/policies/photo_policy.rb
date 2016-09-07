@@ -1,10 +1,10 @@
 class PhotoPolicy < ApplicationPolicy
   def index?
-    user
+    user.present?
   end
 
   def show?
-    user
+    user.present?
   end
 
   def new?
@@ -27,7 +27,7 @@ class PhotoPolicy < ApplicationPolicy
     if director? || teacher?
       true
     elsif student?
-      user.role.albums.include?(record.album)
+      user.albums.include?(record.album)
     else
       false
     end

@@ -1,10 +1,10 @@
 class DirectorPolicy < ApplicationPolicy
   def index?
-    director?
+    user.present?
   end
 
   def show?
-    director? || teacher?
+    user.present?
   end
 
   def create?

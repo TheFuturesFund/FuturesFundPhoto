@@ -4,23 +4,11 @@ class AlbumPolicy < ApplicationPolicy
   end
 
   def index?
-    if director? || teacher?
-      true
-    elsif student?
-      user.role.albums.exists? record
-    else
-      false
-    end
+    user.present?
   end
 
   def show?
-    if director? || teacher?
-      true
-    elsif student?
-      user.role.albums.include?(record)
-    else
-      false
-    end
+    user.present?
   end
 
   def create?
@@ -28,14 +16,14 @@ class AlbumPolicy < ApplicationPolicy
   end
 
   def edit?
-
+    update?
   end
 
   def update?
     if director? || teacher?
       true
     elsif student?
-      user.role.albums.include?(record)
+      user.albums.include?(record)
     else
       false
     end
@@ -45,7 +33,7 @@ class AlbumPolicy < ApplicationPolicy
     if director? || teacher?
       true
     elsif student?
-      user.role.albums.include?(record)
+      user.albums.include?(record)
     else
       false
     end

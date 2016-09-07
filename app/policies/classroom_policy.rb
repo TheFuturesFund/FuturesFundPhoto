@@ -1,16 +1,10 @@
 class ClassroomPolicy < ApplicationPolicy
   def index?
-    director? || teacher?
+    user.present?
   end
 
   def show?
-    if director? || teacher?
-      true
-    elsif student?
-      user.role.classrooms.include?(record)
-    else
-      false
-    end
+    user.present?
   end
 
   def create?

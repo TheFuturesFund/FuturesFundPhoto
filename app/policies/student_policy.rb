@@ -12,7 +12,7 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def update?
-    director? || teacher? || (user.present? && user.role == record)
+    director? || teacher? || (user.present? && user == record)
   end
 
   def destroy?

@@ -22,7 +22,7 @@ FactoryGirl.define do
   end
 
   factory :album do
-    student
+    user
     name Faker::Lorem.sentence
   end
 
@@ -30,7 +30,7 @@ FactoryGirl.define do
     album
     name Faker::Lorem.sentence
     image Faker::Internet.url
-    category 'outtake_category'
+    category "outtake_category"
   end
 
   factory :classroom do
