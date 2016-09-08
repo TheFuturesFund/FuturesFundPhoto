@@ -1,7 +1,7 @@
-Rails.application.routes.draw do 
+Rails.application.routes.draw do
   # Root
   root to: "users#dashboard"
-  
+
   # Devise
   devise_for :users, skip: [:invitations]
   as :user do
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         put :add_photos, on: :member
       end
     end
-  end 
+  end
 
   # Collectios
   [:top_selects, :showcase].each do |collection|
