@@ -1,57 +1,60 @@
-source 'https://rubygems.org'
-ruby '2.3.0'
+source "https://rubygems.org"
+ruby "2.3.0"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
-# Use postgresql as the database for Active Record
-gem 'pg'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+# Use AWS SES to send emails
+gem "aws-ses", "~> 0.6.0", require: "aws/ses"
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem "coffee-rails", "~> 4.1.0"
 # Use Devise authentication framework
-gem 'devise', '~> 3.5.0'
-gem 'devise_invitable', '~> 1.5.2'
-# Use Dotenv to load environment variables outside of foreman
-gem 'dotenv-rails'
+gem "devise", "~> 3.5.0"
+# Use Devise Invitable to add invitations
+gem "devise_invitable", "~> 1.5.2"
+# Use Dotenv to load environment variables
+gem "dotenv-rails"
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem "jbuilder", "~> 2.0"
+# Use jquery as the JavaScript library
+gem "jquery-rails"
+# Use kaminari for pagination
+gem "kaminari"
+# Use postgresql as the database for Active Record
+gem "pg"
 # Use Pundit for authorizations
-gem 'pundit'
+gem "pundit"
+# Bundle edge Rails instead: gem "rails", github: "rails/rails"
+gem "rails", "4.2.3"
+# Use SCSS for stylesheets
+gem "sass-rails", "~> 5.0"
+# undle exec rake doc:rails generates the API under doc/api.
+gem "sdoc", "~> 0.4.0", group: :doc
+# Turbolinks makes following links in your web application faster.
+gem "turbolinks"
+# Use Uglifier as compressor for JavaScript assets
+gem "uglifier", ">= 1.3.0"
 # Use Refile for image uploads
 gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem "refile-s3"
-# Use kaminari for pagination
-gem 'kaminari'
-
-# Use AWS SES to send emails
-gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  # Use RSpec, Factory Girl, and Capybara to build testing suite
-  gem 'rspec-rails'
-  gem "factory_girl_rails", "~> 4.0"
-  gem 'capybara'
   # Use Faker to generate example data
-  gem 'faker'
-  # Use pry to debug on the console
-  gem 'pry-rails'
+  gem "faker"
   # Use letter opener to preview emails
   gem "letter_opener"
+  # Use pry to debug on the console
+  gem "pry-rails"
+  # Spring speeds up development by keeping your application running in the
+  # background.
+  gem "spring"
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem "web-console", "~> 2.0"
 end
 
+group :test do
+  # Use database cleaner to clean up db between tests
+  gem "database_cleaner"
+  # Use factory girl for fixtures
+  gem "factory_girl_rails", "~> 4.0"
+  # Use RSpec assertion framework
+  gem "rspec-rails"
+end
