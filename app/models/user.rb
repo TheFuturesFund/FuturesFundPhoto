@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-  devise :invitable, :database_authenticatable, :recoverable, :trackable, :validatable
+  devise :invitable,
+         :database_authenticatable,
+         :recoverable,
+         :trackable,
+         :validatable
 
   enum role: [:student, :teacher, :director]
 
@@ -15,7 +19,7 @@ class User < ActiveRecord::Base
   validates :role, presence: true
 
   def full_name
-    [first_name, last_name].compact.join(' ')
+    [first_name, last_name].compact.join(" ")
   end
 
   def self.ordered_alphabetically_by_last_name

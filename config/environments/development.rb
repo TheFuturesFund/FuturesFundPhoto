@@ -1,9 +1,7 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
-  # In the development environment your application's code is reloaded on
+  # In the development environment your application"s code is reloaded on
   # every request. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
+  # since you don"t have to restart the web server when you make code changes.
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -13,11 +11,11 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
+  # Don"t care if the mailer can"t send.
   config.action_mailer.raise_delivery_errors = false
 
   # Set mailer host
-  config.action_mailer.default_url_options = { host: 'localhost', port: 4005 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 4005 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -30,8 +28,8 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
-  # yet still be able to expire them through the digest params.
+  # Asset digests allow you to set far-future HTTP expiration dates on all
+  # assets, yet still be able to expire them through the digest params.
   config.assets.digest = true
 
   # Adds additional error checking when serving assets at runtime.
@@ -40,7 +38,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = true
 
   # Preview emails in the browser with letter opener
   config.action_mailer.delivery_method = :letter_opener

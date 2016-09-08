@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe User, type: :model do
   it "should have a valid factory" do

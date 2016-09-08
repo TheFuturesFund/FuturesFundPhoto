@@ -1,0 +1,36 @@
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "db/schema.rb"
+    - "db/migrate/*"
+  Include:
+    - "**/Gemfile"
+    - "**/Rakefile"
+  UseCache: true
+
+Metrics/LineLength:
+  Exclude:
+    - "spec/**/*"
+
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Exclude:
+    - "spec/**/*"
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma

@@ -43,6 +43,8 @@ group :development, :test do
   gem "letter_opener"
   # Use pry to debug on the console
   gem "pry-rails"
+  # Use rubocop for static code analysis
+  gem "rubocop"
   # Spring speeds up development by keeping your application running in the
   # background.
   gem "spring"

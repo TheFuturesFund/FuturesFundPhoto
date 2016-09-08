@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
   enum category: [
     :outtake_category,
     :select_category,
-    :top_select_category
+    :top_select_category,
   ]
 
   before_save :set_initial_name
@@ -16,7 +16,7 @@ class Photo < ActiveRecord::Base
   has_one :user, through: :album
 
   def set_initial_name
-    name ||= SecureRandom.uuid
+    @name ||= SecureRandom.uuid
   end
 
   def self.showcase
