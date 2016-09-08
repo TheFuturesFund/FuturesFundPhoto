@@ -15,8 +15,10 @@ class UsersController < ApplicationController
 
   def update
     authorize @user
-    if @user.update_with_password(user_params)
+    if @user == current_user && @user.update_with_password(user_params)
       sign_in @user, bypass: true
+      redirect_to @user.role, notice: 'User was successfully updated.'
+    elsif @user.update(user_params)
       redirect_to @user.role, notice: 'User was successfully updated.'
     else
       render :edit
