@@ -20,6 +20,14 @@ module V1
       )
     end
 
+    def render_json_error(resource)
+      render(
+        json: resource,
+        status: 422,
+        serializer: ActiveModel::Serializer::ErrorSerializer,
+      )
+    end
+
     def pagination_params
       params[:page].try(
         :permit,
@@ -36,7 +44,7 @@ module V1
           current_page: collection.current_page,
           total_pages:  collection.total_pages,
           per_page:     collection.limit_value,
-        }
+        },
       }
     end
   end

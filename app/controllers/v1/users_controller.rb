@@ -13,5 +13,53 @@ module V1
       authorize @user
       render json: @user, include: params[:include]
     end
+
+    def invite
+      # TODO
+    end
+
+    def create
+      @user = User.new(user_params)
+      authorize @user
+
+      if @user.save
+        render json: @user, status: 201
+      else
+        render_json_error @user
+      end
+    end
+
+    def update
+      @user = User.find(params[:id])
+
+      @user.assign_attributes(user_params)
+      authorize @user
+
+      if @user.save
+        render json: @user
+      else
+        render_json_error @user
+      end
+    end
+
+    def destroy
+      @user = User.find(params[:id])
+      authorize @user
+      @user.destroy
+      render json: "", status: 204
+    end
+
+    private
+
+    def user_params
+      params.require(:user).permit(
+        :email,
+        :first_name,
+        :last_name,
+        :classroom_id,
+        :password,
+        :password_confirmation,
+      )
+    end
   end
 end
