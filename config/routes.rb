@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   use_doorkeeper
 
+  namespace :v1 do
+    resources :classrooms, except: [:new, :edit]
+    resources :users, except: [:new, :edit]
+  end
+
   # Root
   root to: "users#dashboard"
 

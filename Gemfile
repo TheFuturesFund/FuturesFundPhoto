@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 ruby "2.3.0"
 
+# Use Active Model Serializers to serialize JSON API responses
+gem "active_model_serializers", "~> 0.10.0"
 # Use AWS SES to send emails
 gem "aws-ses", "~> 0.6.0", require: "aws/ses"
 # Use CoffeeScript for .coffee assets and views
