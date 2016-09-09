@@ -1,19 +1,17 @@
 module V1
   class UsersController < ApiController
     def index
-      @users = User.all
-      render json: @users, include: include_params
+      @users = policy_scope(User)
+        .ordered_alphabetically_by_last_name
+        .page(pagination_params[:number])
+        .per(pagination_params[:size])
+      render_json_index @users
     end
 
     def show
       @user = User.find(params[:id])
-      render json: @user, include: include_params
-    end
-
-    private
-
-    def include_params
-      params.permit(:include)[:include]
+      authorize @user
+      render json: @user, include: params[:include]
     end
   end
 end

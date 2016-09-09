@@ -14,7 +14,9 @@ module RequestHelpers
     }
   end
 
-  def authenticated_request_headers(user)
+  def authenticated_request_headers(user = nil)
+    user ||= create(:user)
+
     request_headers.merge(
       "AUTHORIZATION" => "bearer #{access_token_for_user(user).token}",
     )

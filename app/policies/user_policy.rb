@@ -1,4 +1,14 @@
 class UserPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      if user.present?
+        scope.all
+      else
+        scope.none
+      end
+    end
+  end
+
   delegate :index?, :show?, :create?, :update?, :destroy?, to: :delegate_policy
 
   private

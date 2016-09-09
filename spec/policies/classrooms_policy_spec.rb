@@ -3,6 +3,33 @@ require "rails_helper"
 describe ClassroomPolicy, type: :policy do
   subject { described_class }
 
+  describe ClassroomPolicy::Scope do
+    it "should be empty for visitors" do
+      create_list(:classroom, 3)
+      scope = ClassroomPolicy::Scope.new(nil, Classroom)
+      expect(scope.resolve.length).to eq 0
+    end
+
+    it "should contain all classrooms for students" do
+      create_list(:classroom, 3)
+      student = build(:user, :student, classroom: Classroom.first)
+      scope = ClassroomPolicy::Scope.new(student, Classroom)
+      expect(scope.resolve.length).to eq 3
+    end
+
+    it "should contain all classrooms for teachers" do
+      create_list(:classroom, 3)
+      scope = ClassroomPolicy::Scope.new(build(:user, :teacher), Classroom)
+      expect(scope.resolve.length).to eq 3
+    end
+
+    it "should contain all classrooms for directors" do
+      create_list(:classroom, 3)
+      scope = ClassroomPolicy::Scope.new(build(:user, :director), Classroom)
+      expect(scope.resolve.length).to eq 3
+    end
+  end
+
   permissions :index? do
     it "does not allow visitors to list classrooms" do
       expect(subject).not_to permit(nil, build(:classroom))

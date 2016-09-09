@@ -61,6 +61,8 @@ group :test do
   gem "database_cleaner"
   # Use factory girl for fixtures
   gem "factory_girl_rails", "~> 4.0"
+  # Use JSON matchers to match responses to JSON schemas
+  gem "json_matchers"
   # Use RSpec assertion framework
   gem "rspec-rails"
 end

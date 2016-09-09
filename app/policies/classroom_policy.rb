@@ -1,4 +1,14 @@
 class ClassroomPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      if user.present?
+        scope.all
+      else
+        scope.none
+      end
+    end
+  end
+
   def index?
     user.present?
   end
