@@ -9,6 +9,8 @@ gem "coffee-rails", "~> 4.1.0"
 gem "devise", "~> 3.5.0"
 # Use Devise Invitable to add invitations
 gem "devise_invitable", "~> 1.5.2"
+# Use Doorkeeper to manage OAuth2 logins
+gem "doorkeeper"
 # Use Dotenv to load environment variables
 gem "dotenv-rails"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
