@@ -12,7 +12,11 @@ class AlbumPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present?
+    if director? || teacher?
+      true
+    elsif student?
+      record.user == user
+    end
   end
 
   def edit?
