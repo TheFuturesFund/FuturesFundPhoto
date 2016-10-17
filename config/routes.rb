@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :classrooms, except: [:new, :edit]
     resources :users, except: [:new, :edit]
+    resources :albums, except: [:new, :edit]
   end
 
   # Root
