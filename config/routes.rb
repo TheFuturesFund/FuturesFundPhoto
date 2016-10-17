@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :classrooms, except: [:new, :edit]
     resources :users, except: [:new, :edit]
     resources :albums, except: [:new, :edit]
+    resources :photos, except: [:new, :edit]
   end
 
   # Root
