@@ -5,8 +5,6 @@ class Album < ActiveRecord::Base
   validates :name, presence: true
   validates :student, presence: true
 
-  accepts_attachments_for :photos, attachment: :image, append: true
-
   def self.ordered_reverse_chronologically_by_created_at
     order(created_at: :desc)
   end

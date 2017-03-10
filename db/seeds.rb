@@ -49,6 +49,7 @@ end
         Photo.create(
           album: album,
           name: Faker::Lorem.sentence,
+          image_id: SecureRandom.uuid,
         )
       end
     end

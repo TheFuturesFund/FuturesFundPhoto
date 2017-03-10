@@ -26,15 +26,13 @@ gem 'devise_invitable', '~> 1.5.2'
 gem 'dotenv-rails'
 # Use Pundit for authorizations
 gem 'pundit'
-# Use Refile for image uploads
-gem "refile", require: "refile/rails"
-gem "refile-mini_magick"
-gem "refile-s3"
 # Use kaminari for pagination
 gem 'kaminari'
 
 # Use AWS SES to send emails
 gem 'aws-ses', '~> 0.6.0', require: 'aws/ses'
+# Use S3 to host files
+gem 'aws-sdk', '~> 2.8.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

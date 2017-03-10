@@ -8,7 +8,7 @@
 <div class="row">
   <div class="col-sm-6">
     <div class="image-container">
-      <%= image_tag(attachment_url(@photo, :image, fallback: "default_photo_image.png"), width: "100%") %>
+      <%= image_tag(@photo.image_url, width: "100%") %>
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="form-group">
         <%= f.label :category %>
-        <%= 
+        <%=
           f.select :category,
           [["Outtake", "outtake_category"], ["Select", "select_category"], ["Top Select", "top_select_category"]],
           {},

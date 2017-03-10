@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   # Users
   resources :users, only: [:edit, :update]
 
+  # Process Photos
+  put "photos/process", to: "photos#mark_processed"
+
   # Classrooms
   resources :classrooms, shallow: true do
     # Students
@@ -31,6 +34,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Upload URLs
+  get 'upload_urls/', to: "upload_urls#index"
 
   # Collectios
   [:top_selects, :showcase].each do |collection|

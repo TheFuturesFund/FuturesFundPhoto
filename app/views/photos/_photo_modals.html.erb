@@ -11,7 +11,7 @@
           <script>
             $("#<%= photo_modal_id(photo) %>").on("shown.bs.modal", function() {
               $("#<%= photo_modal_id(photo) %> .modal-body img").attr(
-                "src", "<%= attachment_url(photo, :image, fallback: 'default_photo_image.png') %>"
+                "src", "<%= photo.image_url %>"
               )
             })
           </script>
@@ -24,7 +24,7 @@
           </div>
           <%= link_to "Showcase", photo_path(photo, photo: { showcase: !photo.showcase? }, redirect_url: request.original_url), method: :put, class: photo_showcase_button_class(photo) %>
           <hr>
-          <%= link_to "Download", attachment_url(photo, :image), class: "btn btn-primary", download: "#{photo.student.first_name}-#{photo.student.last_name}-#{photo.id}" %>
+          <%= link_to "Download", photo.image_url, class: "btn btn-primary", download: "#{photo.student.first_name}-#{photo.student.last_name}-#{photo.id}" %>
           <hr>
           <%= link_to "Edit", edit_photo_path(photo), class: "btn btn-primary" %>
           <%= link_to "Delete", photo_path(photo), method: :delete, class: "btn btn-danger", data: { confirm: "Permanently delete photo?" } %>

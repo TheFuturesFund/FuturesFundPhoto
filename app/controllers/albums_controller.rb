@@ -66,11 +66,16 @@ class AlbumsController < ApplicationController
 
   def add_photos
     authorize @album, :update?
-    if @album.update(add_photos_params)
-      redirect_to @album, notice: "Photos were successfully added"
-    else
-      render "photos/new"
+    upload_data = JSON.parse(params["upload_data"])
+    upload_data.map do |datum|
+      Photo.create!(
+        name: datum["name"],
+        image_id: datum["image_id"],
+        extension: datum["extension"],
+        album: @album,
+      )
     end
+    redirect_to @album, notice: "Photos were successfully added"
   end
 
   # DELETE /albums/1
@@ -95,9 +100,5 @@ class AlbumsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def album_params
     params.require(:album).permit(:name, :student_id, photos_images: [])
-  end
-
-  def add_photos_params
-    params.require(:album).permit(photos_images: [])
   end
 end

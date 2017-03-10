@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
+  protect_from_forgery :except => [:mark_processed]
   before_action :set_photo, only: [:edit, :update, :destroy]
-  
+
   # GET /photos/new
   def new
     @album = Album.find(params[:album_id])
@@ -47,6 +48,12 @@ class PhotosController < ApplicationController
     @album = @photo.album
     @photo.destroy
     redirect_to @album, notice: 'Photo was successfully destroyed.'
+  end
+
+  def mark_processed
+    @photo = Photo.find_by(token: params[:token])
+    @photo.update(processed: true)
+    head :ok
   end
 
   private

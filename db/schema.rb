@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326175356) do
+ActiveRecord::Schema.define(version: 20170307014947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20160326175356) do
     t.datetime "updated_at",                 null: false
     t.string   "image_id"
     t.boolean  "showcase",   default: false
+    t.boolean  "processed",  default: false
+    t.string   "extension"
+    t.string   "token",                      null: false
   end
 
   create_table "students", force: :cascade do |t|

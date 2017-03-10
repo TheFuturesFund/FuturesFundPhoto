@@ -9,12 +9,7 @@
               $(function() {
                 $("img#photoThumbnail<%= photo.id %>").attr(
                   "src",
-                  "<%= attachment_url(
-                    photo,
-                    :image,
-                    :limit, 300, 300,
-                    fallback: "default_photo_image.png")
-                  %>"
+                  "<%= photo.image_url(:thumb) %>"
                 )
               })
             </script>

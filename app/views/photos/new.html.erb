@@ -23,15 +23,15 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="form-group">
-        <%= f.label :photos %>
-        <%= f.attachment_field :photos_images, multiple: true, direct: true %>
+        <label for="photos">Photos</label>
+        <input name="photos" type="file" multiple="true" id="add-photos-file-input">
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <div id="upload-progress">
-        
+
       </div>
     </div>
   </div>
@@ -40,4 +40,5 @@
       <%= f.submit "Add Photos", class: "btn btn-primary", id: "add-photos-submit-button" %>
     </div>
   </div>
+  <input type="hidden" id="photos-upload-data" name="upload_data" value="">
 <% end %>
