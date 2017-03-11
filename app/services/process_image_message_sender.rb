@@ -19,7 +19,7 @@ class ProcessImageMessageSender
 
   def send_sqs_message
     sqs_client.send_message(
-      queue_url: ENV["SQS_QUEUE_URL=https"],
+      queue_url: ENV["SQS_QUEUE_URL"],
       message_body: formatted_message,
       message_group_id: "futuresfundphoto",
       message_deduplication_id: @image.image_id,
