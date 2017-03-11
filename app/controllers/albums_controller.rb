@@ -68,12 +68,13 @@ class AlbumsController < ApplicationController
     authorize @album, :update?
     upload_data = JSON.parse(params["upload_data"])
     upload_data.map do |datum|
-      Photo.create!(
+      photo = Photo.create!(
         name: datum["name"],
         image_id: datum["image_id"],
         extension: datum["extension"],
         album: @album,
       )
+      photo.process_image
     end
     redirect_to @album, notice: "Photos were successfully added"
   end

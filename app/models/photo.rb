@@ -5,7 +5,6 @@ class Photo < ActiveRecord::Base
     :top_select_category
   ]
 
-  after_create :process_image
   before_validation :set_token
   before_save :set_initial_name
 
