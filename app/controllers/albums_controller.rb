@@ -19,13 +19,13 @@ class AlbumsController < ApplicationController
       @photos = @album.photos.ordered_by_category
                              .ordered_reverse_chronologically_by_created_at
                              .page(@page)
-                             .per(6)
+                             .per(18)
     elsif Photo.categories.keys.include? @category
       @photos = @album.photos.where(category: Photo.categories[@category])
                              .ordered_by_category
                              .ordered_reverse_chronologically_by_created_at
                              .page(@page)
-                             .per(6)
+                             .per(18)
     else
       @photos = []
     end
