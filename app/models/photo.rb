@@ -1,4 +1,4 @@
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   enum category: [
     :outtake_category,
     :select_category,

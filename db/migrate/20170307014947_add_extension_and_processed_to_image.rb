@@ -1,4 +1,4 @@
-class AddExtensionAndProcessedToImage < ActiveRecord::Migration
+class AddExtensionAndProcessedToImage < ActiveRecord::Migration[4.2]
   def up
     add_column :photos, :processed, :boolean, default: false
     add_column :photos, :extension, :string

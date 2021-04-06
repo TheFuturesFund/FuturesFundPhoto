@@ -1,4 +1,4 @@
-class FixForeignKeyOnClassroomStudents < ActiveRecord::Migration
+class FixForeignKeyOnClassroomStudents < ActiveRecord::Migration[4.2]
   def change
     remove_column :classroom_students, :student_id
     remove_column :classroom_students, :classroom_id

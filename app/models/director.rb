@@ -1,4 +1,4 @@
-class Director < ActiveRecord::Base
+class Director < ApplicationRecord
   include FullNameable
 
   validates :first_name, presence: true

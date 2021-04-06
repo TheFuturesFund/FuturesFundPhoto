@@ -1,4 +1,4 @@
-class Student < ActiveRecord::Base
+class Student < ApplicationRecord
   include FullNameable
 
   has_one :user, as: :role, dependent: :destroy
